@@ -56,7 +56,7 @@ function mfn_user() {
 	}
 }
 function mfn_main() {
-	var elements = document.evaluate('//div[@class="comments" or @class="copy" or @class="comments bestleft"]/span[@class="smallcopy"]',document.body,null,XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,null);
+	var elements = document.evaluate('//div[@class="comments" or @class="copy" or @class="comments bestleft"]/span[@class="smallcopy" or @class="smallcopy postbyline"]',document.body,null,XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,null);
 	mfn_poster = elements.snapshotItem(0).getElementsByTagName('a').item(0).textContent.toString();
 	for (var i=0,element;element = elements.snapshotItem(i);i++) {
 		var author = element.getElementsByTagName('a').item(0).textContent.toString();
