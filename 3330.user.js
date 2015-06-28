@@ -139,8 +139,21 @@ mfn_list = function (icon) {
 	}
 	buffer.push("</div>");
 	mfn_div.innerHTML = buffer.join("");
-	mfn_div.style.left = icon.offsetLeft-1;
-	mfn_div.style.top = icon.offsetTop-1;
+	var rect = icon.getBoundingClientRect();
+	var body = document.body
+	var docElem = document.documentElement    
+
+	var scrollTop = window.pageYOffset || docElem.scrollTop || body.scrollTop;
+	var scrollLeft =  window.pageXOffset || docElem.scrollLeft || body.scrollLeft;
+
+	var clientTop = docElem.clientTop || body.clientTop || 0
+	var clientLeft = docElem.clientLeft || body.clientLeft || 0
+
+	var menu_top_pos = rect.bottom + scrollTop - clientTop;
+	var menu_left_pos = rect.left + scrollLeft - clientLeft;
+
+	mfn_div.style.left = Math.round(menu_left_pos) + 'px';
+	mfn_div.style.top = Math.round(menu_top_pos) + 'px';
 	mfn_div.style.display = "block";
 	mfn_div.childNodes.item(2).scrollTop = mfn_div.childNodes.item(2).childNodes.item(j-1).offsetTop-32; };
 mfn_next = function (panel) {
